@@ -47,4 +47,11 @@ public class AccountService {
 		
 		return repository.save(account);
 	}
+	
+	public Account updateAccount(Account account, AccountDto.Update updateDto) {
+		account.setPassword(updateDto.getPassword());
+		account.setFullName(updateDto.getFullName());
+		
+		return repository.save(account);
+	}
 }
