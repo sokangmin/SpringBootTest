@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import me.whiteship.commons.ErrorResponse;
+
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class AccountController {
@@ -41,7 +42,7 @@ public class AccountController {
 		return "Hello Spring Boot";
 	}
 	
-	@RequestMapping(value = "/accounts", method = RequestMethod.POST)
+	@RequestMapping(value = "/accounts", method = POST)
 	public ResponseEntity createAccount(@RequestBody @Valid AccountDto.Create create, 
 										BindingResult result){
 		if (result.hasErrors()) {
@@ -59,7 +60,7 @@ public class AccountController {
 	}
 	
 	// /accounts?page=0&size=20&sort=username&sort=joined,desc
-	@RequestMapping(value = "/accounts", method = RequestMethod.GET)
+	@RequestMapping(value = "/accounts", method = GET)
 	@ResponseStatus(HttpStatus.OK)
 	public PageImpl<AccountDto.Response> getAccounts(Pageable pageable) {
 		Page<Account> page = repository.findAll(pageable);
@@ -72,15 +73,12 @@ public class AccountController {
 		return new PageImpl<>(content, pageable, page.getTotalElements());
 	}
 	
-	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
-	public ResponseEntity getAccount(@PathVariable Long id) {
-		Account account = repository.findOne(id);
-		if (account == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+	@RequestMapping(value = "/accounts/{id}", method = GET)
+	@ResponseStatus(HttpStatus.OK)
+	public AccountDto.Response getAccount(@PathVariable Long id) {
+		Account account = service.getAccount(id);
 		
-		AccountDto.Response result = modelMapper.map(account, AccountDto.Response.class);
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		return modelMapper.map(account, AccountDto.Response.class);
 	}
 	
 	// 전체 업데이트: PUT
@@ -90,7 +88,7 @@ public class AccountController {
 	// - (username:"whiteship")
 	// - (password:"pass")
 	// - (fullName:"keesun baik")
-	@RequestMapping(value = "/accounts/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/accounts/{id}", method = PUT)
 	public ResponseEntity updateAccount(@PathVariable Long id, 
 										@RequestBody @Valid AccountDto.Update updateDto,
 										BindingResult result) {
@@ -98,14 +96,10 @@ public class AccountController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		Account account = repository.findOne(id);
-		if ( account == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		Account updatedAccount = service.updateAccount(id, updateDto);
 		
-		Account updatedAccount = service.updateAccount(account, updateDto);
-		
-		return new ResponseEntity<>(modelMapper.map(updatedAccount, AccountDto.Response.class), HttpStatus.OK);
+		return new ResponseEntity<>(modelMapper.map(updatedAccount, AccountDto.Response.class), 
+				HttpStatus.OK);
 		
 		// TODO update
 		
@@ -118,6 +112,17 @@ public class AccountController {
 		ErrorResponse errorResponse = new ErrorResponse();
 		errorResponse.setMessage("[" + e.getUsername() + "] 중복된 username 입니다.");
 		errorResponse.setCode("duplicated.username.exception");
+		
+		return errorResponse;
+	}
+	
+	// TODO 예외 처리 네번째 방법 (콜백 비슷한거...)
+	@ExceptionHandler(AccountNotFoundException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorResponse handleAccountNotFoundException(AccountNotFoundException e) {
+		ErrorResponse errorResponse = new ErrorResponse();
+		errorResponse.setMessage("[" + e.getId() + "]에 해당하는 계정이 없습니다.");
+		errorResponse.setCode("account.not.found.exception");
 		
 		return errorResponse;
 	}
