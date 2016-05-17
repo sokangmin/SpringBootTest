@@ -158,4 +158,19 @@ public class AccountControllerTest {
 		result.andExpect(status().isOk());
 		result.andExpect(jsonPath("$.fullName", is("sokangmin")));
 	}
+	
+	@Test
+	public void deleteAccount() throws Exception {
+		ResultActions result = mockMvc.perform(delete("/accounts/1"));
+		
+		result.andDo(print());
+		result.andExpect(status().isBadRequest());
+		
+		AccountDto.Create createDto = accountCreateFixture();
+		Account account = service.createAccount(createDto);
+		
+		result = mockMvc.perform(delete("/accounts/" + account.getId()));
+		result.andDo(print());
+		result.andExpect(status().isNoContent());
+	}
 }
