@@ -128,3 +128,49 @@
 2016-05-17 17:45:46.340  INFO 46996 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2016-05-17 17:45:46.340  INFO 46996 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2016-05-17 17:45:46.361  INFO 46996 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
+2016-05-17 18:10:41.724  INFO 12592 --- [main] me.whiteship.Application                 : Starting Application on HIKKIN-PC with PID 12592 (C:\Users\Administrator\workspace\amugona\target\classes started by Administrator in C:\Users\Administrator\workspace\amugona)
+2016-05-17 18:10:41.730  INFO 12592 --- [main] me.whiteship.Application                 : No active profile set, falling back to default profiles: default
+2016-05-17 18:10:41.806  INFO 12592 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@13fcdb0: startup date [Tue May 17 18:10:41 KST 2016]; root of context hierarchy
+2016-05-17 18:10:43.814  INFO 12592 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$1b7674df] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-05-17 18:10:44.829  INFO 12592 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2016-05-17 18:10:44.846  INFO 12592 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-05-17 18:10:44.848  INFO 12592 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.33
+2016-05-17 18:10:45.015  INFO 12592 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-05-17 18:10:45.016  INFO 12592 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3214 ms
+2016-05-17 18:10:45.452  INFO 12592 --- [localhost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-05-17 18:10:45.457  INFO 12592 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-05-17 18:10:45.458  INFO 12592 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-05-17 18:10:45.458  INFO 12592 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-05-17 18:10:45.459  INFO 12592 --- [localhost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2016-05-17 18:10:46.107  INFO 12592 --- [main] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-05-17 18:10:46.122  INFO 12592 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-05-17 18:10:46.240  INFO 12592 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {4.3.11.Final}
+2016-05-17 18:10:46.242  INFO 12592 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2016-05-17 18:10:46.245  INFO 12592 --- [main] org.hibernate.cfg.Environment            : HHH000021: Bytecode provider name : javassist
+2016-05-17 18:10:46.562  INFO 12592 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2016-05-17 18:10:46.689  INFO 12592 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2016-05-17 18:10:46.865  INFO 12592 --- [main] o.h.h.i.ast.ASTQueryTranslatorFactory    : HHH000397: Using ASTQueryTranslatorFactory
+2016-05-17 18:10:47.256  INFO 12592 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000227: Running hbm2ddl schema export
+2016-05-17 18:10:47.278  INFO 12592 --- [main] org.hibernate.tool.hbm2ddl.SchemaExport  : HHH000230: Schema export complete
+2016-05-17 18:10:48.061  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@13fcdb0: startup date [Tue May 17 18:10:41 KST 2016]; root of context hierarchy
+2016-05-17 18:10:48.185  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello]}" onto public java.lang.String me.whiteship.accounts.AccountController.hello()
+2016-05-17 18:10:48.186  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/accounts],methods=[POST]}" onto public org.springframework.http.ResponseEntity me.whiteship.accounts.AccountController.createAccount(me.whiteship.accounts.AccountDto$Create,org.springframework.validation.BindingResult)
+2016-05-17 18:10:48.187  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/accounts],methods=[GET]}" onto public org.springframework.data.domain.PageImpl<me.whiteship.accounts.AccountDto$Response> me.whiteship.accounts.AccountController.getAccounts(org.springframework.data.domain.Pageable)
+2016-05-17 18:10:48.187  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/accounts/{id}],methods=[GET]}" onto public me.whiteship.accounts.AccountDto$Response me.whiteship.accounts.AccountController.getAccount(java.lang.Long)
+2016-05-17 18:10:48.188  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/accounts/{id}],methods=[PUT]}" onto public org.springframework.http.ResponseEntity me.whiteship.accounts.AccountController.updateAccount(java.lang.Long,me.whiteship.accounts.AccountDto$Update,org.springframework.validation.BindingResult)
+2016-05-17 18:10:48.188  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/accounts/{id}],methods=[DELETE]}" onto public org.springframework.http.ResponseEntity me.whiteship.accounts.AccountController.deleteAccount(java.lang.Long)
+2016-05-17 18:10:48.191  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-05-17 18:10:48.191  INFO 12592 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-05-17 18:10:48.198  INFO 12592 --- [main] o.s.w.s.c.a.WebMvcConfigurerAdapter      : Adding welcome page: class path resource [static/index.html]
+2016-05-17 18:10:48.212  INFO 12592 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Root mapping to handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+2016-05-17 18:10:48.226  INFO 12592 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-05-17 18:10:48.227  INFO 12592 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-05-17 18:10:48.290  INFO 12592 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-05-17 18:10:48.547  INFO 12592 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2016-05-17 18:10:48.683  INFO 12592 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2016-05-17 18:10:48.689  INFO 12592 --- [main] me.whiteship.Application                 : Started Application in 7.451 seconds (JVM running for 8.053)
+2016-05-17 18:11:40.219  INFO 12592 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-05-17 18:11:40.219  INFO 12592 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2016-05-17 18:11:40.240  INFO 12592 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
