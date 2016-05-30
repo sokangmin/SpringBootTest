@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,9 @@ public class AccountService {
 	private AccountRepository repository;
 	
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private ModelMapper modelMapper;
 
 	public Account createAccount(AccountDto.Create dto) {
@@ -34,6 +38,7 @@ public class AccountService {
 		
 		Account account = modelMapper.map(dto, Account.class);
 		
+		
 		// 유효한 username인지 판단
 		String username = dto.getUsername();
 		if(repository.findByUsername(username) != null) {
@@ -42,6 +47,7 @@ public class AccountService {
 		}
 		
 		// TODO password 해싱
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		
 		Date now = new Date();
 		account.setJoined(now);
@@ -52,7 +58,7 @@ public class AccountService {
 	
 	public Account updateAccount(Long id, AccountDto.Update updateDto) {
 		Account account = getAccount(id);
-		account.setPassword(updateDto.getPassword());
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
 		account.setFullName(updateDto.getFullName());
 		
 		return repository.save(account);
