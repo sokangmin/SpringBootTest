@@ -36,4 +36,5 @@ public class AccountDto {
 		private String password;
 		private String fullName;
 	}
+
 }

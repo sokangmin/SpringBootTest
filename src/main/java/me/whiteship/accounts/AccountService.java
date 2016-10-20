@@ -76,4 +76,18 @@ public class AccountService {
 	public void deleteAccount(Long id) {
 		repository.delete(getAccount(id));
 	}
+
+	public Account patchAccount(Long id, AccountDto.Update patchDto) {
+		Account account = getAccount(id);
+
+		if(patchDto.getFullName() != null) {
+			account.setFullName(patchDto.getFullName());
+		}
+
+		if(patchDto.getPassword() != null) {
+			account.setPassword(patchDto.getPassword());
+		}
+
+		return repository.save(account);
+	}
 }

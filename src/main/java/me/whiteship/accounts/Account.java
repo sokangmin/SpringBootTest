@@ -10,9 +10,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Data
+@DynamicUpdate(value = true)
 public class Account {
 	
 	@Id @GeneratedValue

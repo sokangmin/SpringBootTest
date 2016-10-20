@@ -25,6 +25,7 @@ import me.whiteship.commons.ErrorResponse;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
+@RequestMapping(value = "/api")
 public class AccountController {
 
 	@Autowired
@@ -39,7 +40,7 @@ public class AccountController {
 	@RequestMapping("/hello")
 	public String hello() {
 
-		return "Hello Spring Boot";
+		return "Hello Spring Boot!";
 	}
 	
 	@RequestMapping(value = "/accounts", method = POST)
@@ -104,6 +105,21 @@ public class AccountController {
 		// TODO update
 		
 	}
+
+	@RequestMapping(value = "/accounts/{id}", method = PATCH)
+	public ResponseEntity patchAccount(@PathVariable Long id,
+									   @RequestBody @Valid AccountDto.Update patchDto,
+									   BindingResult result) {
+		// TODO patch
+		if(result.hasErrors()) {
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+
+		Account patchedAccount = service.patchAccount(id, patchDto);
+
+		return new ResponseEntity<>(modelMapper.map(patchedAccount, AccountDto.Response.class),
+				HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/accounts/{id}", method=DELETE)
 	public ResponseEntity deleteAccount(@PathVariable Long id) {
@@ -133,5 +149,5 @@ public class AccountController {
 		
 		return errorResponse;
 	}
-	
+
 }
